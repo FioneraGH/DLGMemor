@@ -46,11 +46,30 @@
 }
 
 - (void)searchMem:(const char *)value type:(int)type comparison:(int)comparison {
+    double mem = 0;
+    task_basic_info_data_t taskInfo;
+    mach_msg_type_number_t infoCount = TASK_BASIC_INFO_COUNT;
+    kern_return_t kernReturn;
+    kernReturn = task_info(g_task, TASK_BASIC_INFO, (task_info_t)&taskInfo, &infoCount);
+    if (kernReturn != KERN_SUCCESS) {
+        mem = -1;
+    }
+    mem = taskInfo.resident_size / 1024.0 / 1024.0;
+    NSLog(@"DLGMemor:Start Memery Search:%f", mem);
+    
     int size = 0;
     void *v = value_of_type(value, type, &size);
     int found = 0;
     search_result_chain_t chain = g_chain;
     g_chain = search_mem(g_task, v, size, type, comparison, chain, &found);
+    
+    kernReturn = task_info(g_task, TASK_BASIC_INFO, (task_info_t)&taskInfo, &infoCount);
+    if (kernReturn != KERN_SUCCESS) {
+        mem = -1;
+    }
+    mem = taskInfo.resident_size / 1024.0 / 1024.0;
+    NSLog(@"DLGMemor:Stop Memery Search:%f", mem);
+    
     self.memView.chainCount = found;
     self.memView.chain = g_chain;
 }
@@ -106,8 +125,8 @@
     void *data = read_range_mem(g_task, a, 0, s, &addr, &data_size);
     if (data == NULL || size == 0) return @"No memory.";
     
-    NSMutableString *hex = [NSMutableString stringWithCapacity:data_size * 4];
-    NSMutableString *chs = [NSMutableString stringWithCapacity:data_size];
+    NSMutableString *hex = [NSMutableString stringWithCapacity:(NSUInteger)data_size * 4];
+    NSMutableString *chs = [NSMutableString stringWithCapacity:(NSUInteger)data_size];
     [hex appendFormat:@"%08llX ", addr];
     for (mach_vm_size_t i = 0; i < data_size; ++i) {
         if (i > 0 && i % 8 == 0) {

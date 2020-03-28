@@ -10,13 +10,14 @@
 #define mem_h
 
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 #include <mach/mach.h>
 #include <sys/sysctl.h>
 #include <sys/errno.h>
 #include <dlfcn.h>
 #include <TargetConditionals.h>
+
 #include "search_result.h"
 
 void all_processes(int uid);

@@ -9,8 +9,9 @@
 #ifndef search_result_h
 #define search_result_h
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+
 #include "search_result_def.h"
 
 search_result_chain_t create_search_result_chain(mach_vm_address_t address, void *value, int size, int type, int protection);

@@ -272,7 +272,7 @@
     UISegmentedControl *sc = [[UISegmentedControl alloc] initWithItems:@[@"<", @"<=", @"=", @">=", @">"]];
     sc.translatesAutoresizingMaskIntoConstraints = NO;
     [sc setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
-    [sc setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
+    [sc setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor systemBlueColor]} forState:UIControlStateSelected];
     sc.selectedSegmentIndex = 2;
     [sc addTarget:self action:@selector(onComparisonChanged:) forControlEvents:UIControlEventValueChanged];
     [self.vOption addSubview:sc];
@@ -290,7 +290,7 @@
     UISegmentedControl *sc = [[UISegmentedControl alloc] initWithItems:@[@"UByte", @"UShort", @"UInt", @"ULong", @"Float"]];
     sc.translatesAutoresizingMaskIntoConstraints = NO;
     [sc setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
-    [sc setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
+    [sc setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor systemBlueColor]} forState:UIControlStateSelected];
     sc.selectedSegmentIndex = -1;
     sc.selected = NO;
     [sc addTarget:self action:@selector(onValueTypeChanged:) forControlEvents:UIControlEventValueChanged];
@@ -309,7 +309,7 @@
     UISegmentedControl *sc = [[UISegmentedControl alloc] initWithItems:@[@"SByte", @"SShort", @"SInt", @"SLong", @"Double"]];
     sc.translatesAutoresizingMaskIntoConstraints = NO;
     [sc setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
-    [sc setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
+    [sc setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor systemBlueColor]} forState:UIControlStateSelected];
     sc.selectedSegmentIndex = 2;
     sc.selected = YES;
     [sc addTarget:self action:@selector(onValueTypeChanged:) forControlEvents:UIControlEventValueChanged];
